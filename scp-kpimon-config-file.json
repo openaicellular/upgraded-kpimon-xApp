@@ -1,0 +1,44 @@
+{
+    "json_url": "scp-kpimon",
+    "xapp_name": "scp-kpimon",
+    "version": "1.0.1",
+    "containers": [
+        {
+            "name": "scp-kpimon-xapp",
+            "image": {
+                "registry": "xApp-registry.local:5008",
+                "name": "scp-kpimon",
+                "tag": "1.0.1"
+            }
+        }
+    ],
+    "appenv": { "ranList":"enB_macro_001_001_0019b0" },
+    "messaging": {
+        "ports": [
+            {
+                "name": "rmr-data",
+                "container": "scp-kpimon-xapp",
+                "port": 4560,
+                "rxMessages": [ "RIC_SUB_RESP", "RIC_SUB_FAILURE", "RIC_INDICATION", "RIC_SUB_DEL_RESP", "RIC_SUB_DEL_FAILURE" ],
+                "txMessages": [ "RIC_SUB_REQ", "RIC_SUB_DEL_REQ" ],
+                "policies": [1],
+                "description": "rmr receive data port for scp-kpimon-xapp"
+            },
+            {
+                "name": "rmr-route",
+                "container": "scp-kpimon-xapp",
+                "port": 4561,
+                "description": "rmr route port for scp-kpimon-xapp"
+            }
+        ]
+    },
+    "rmr": {
+        "protPort": "tcp:4560",
+        "maxSize": 2072,
+        "numWorkers": 1,
+        "txMessages": [ "RIC_SUB_REQ", "RIC_SUB_DEL_REQ" ],
+        "rxMessages": [ "RIC_SUB_RESP", "RIC_SUB_FAILURE", "RIC_INDICATION", "RIC_SUB_DEL_RESP", "RIC_SUB_DEL_FAILURE" ],
+	"policies": [1]
+    }
+}
+
