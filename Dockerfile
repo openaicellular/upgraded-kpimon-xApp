@@ -1,4 +1,4 @@
-FROM nexus3.o-ran-sc.org:10004/o-ran-sc/bldr-ubuntu20-c-go:1.0.0 as kpimonbuild
+FROM nexus3.o-ran-sc.org:10004/o-ran-sc/bldr-ubuntu20-c-go:1.1.1 as kpimonbuild
 
 ENV PATH $PATH:/usr/local/bin
 ENV GOPATH /go
